@@ -1,6 +1,6 @@
 <?php
 
-namespace Sympla\RemoteAuthentication;
+namespace Sympla\RemoteAuthenticationMiddleware;
 
 use Sympla\RemoteAuthentication\Exception\InvalidCredentialsException;
 use GuzzleHttp\Client;
