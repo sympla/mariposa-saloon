@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "sympla/oauth2-remote-authentication": "dev-master"
+        "sympla/oauth2-remote-authentication": "~1.0"
     },
     "autoload": {
         "psr-4": {
