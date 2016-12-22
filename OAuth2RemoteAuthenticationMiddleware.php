@@ -8,6 +8,7 @@ use GuzzleHttp\Exception\RequestException;
 use Interop\Container\ContainerInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Sympla\RemoteAuthentication\OAuth2RemoteAuthentication;
 
 /**
  * Class OAuth2ClientCredentialsAuthentication
