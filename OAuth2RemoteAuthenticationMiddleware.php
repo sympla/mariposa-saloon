@@ -2,6 +2,7 @@
 
 namespace Sympla\RemoteAuthenticationMiddleware;
 
+use GuzzleHttp\ClientInterface;
 use Sympla\RemoteAuthentication\Exception\InvalidCredentialsException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
@@ -20,11 +21,14 @@ class OAuth2RemoteAuthenticationMiddleware
     private $container = null;
     /** @var array */
     private $options = [];
+    /** @var ClientInterface */
+    private $httpClient;
 
-    public function __construct(ContainerInterface $container, array $options = [])
+    public function __construct(ClientInterface $httpClient, ContainerInterface $container, array $options = [])
     {
         $this->container = $container;
         $this->options = $options;
+        $this->httpClient = $httpClient;
     }
 
     public function __invoke(
@@ -55,7 +59,7 @@ class OAuth2RemoteAuthenticationMiddleware
         $token = $request->getHeaderLine('Authorization');
 
         try {
-            $authenticator = new OAuth2RemoteAuthentication(new Client, $this->options['authentication_server']);
+            $authenticator = new OAuth2RemoteAuthentication($this->httpClient, $this->options['authentication_server']);
             $user = $authenticator->getUserFromRequest($request);
 
             $this->container['user'] = $user;
