@@ -1,8 +1,8 @@
 # sympla/mariposa-saloon
 
 > Mariposa Saloon is the local saloon and brothel in Sweetwater, Westworld.
-It is mainly run by madam Maeve Millay, with her assistant and fellow 
-courtesan, Clementine Pennyfeather. 
+> It is mainly run by madam Maeve Millay, with her assistant and fellow 
+> courtesan, Clementine Pennyfeather. 
 
 This library is a middleware that integrates the [mesa-gold-bar](https://github.com/sympla/mesa-gold-bar)
 component into Slim, Laravel and other frameworks.
