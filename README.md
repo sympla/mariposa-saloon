@@ -1,47 +1,41 @@
-# OAuth2 Remote Authentication Middleware
+# sympla/mariposa-saloon
 
-Essa biblioteca funciona como um middleware para o microframework slim.
-Tem por objetivo auxiliar com a identificação de usuários através de seus access
-tokens.
+> Mariposa Saloon is the local saloon and brothel in Sweetwater, Westworld.
+It is mainly run by madam Maeve Millay, with her assistant and fellow 
+courtesan, Clementine Pennyfeather. 
 
-## Instalação
+This library is a middleware that integrates the [mesa-gold-bar](https://github.com/sympla/mesa-gold-bar)
+component into Slim, Laravel and other frameworks.
 
-Certifique-se de que `packagist.com` esteja adicionado à lista de repositórios
-do seu `composer.json`:
+## Installations
 
-```json
-    {
-        "repositories": [
-            {"type": "composer", "url": "https://repo.packagist.com/sympla/"},
-            {"packagist": false}
-        ]
-    }
-```
+Install the package using composer:
 
-Então, instale o pacote:
-
-    $ composer require sympla/oauth-remote-authentication-middlware ~1.0
+    $ composer require sympla/mariposa-saloon 2.0
     
-É isso.
+That's it.
 
-## Utilização
+## Usage
 
-Adicione o middleware à aplicação:
+Add the middleware to the application:
 
 ```php
 <?php
 #middleware.php
-$app->add(new \Sympla\RemoteAuthenticationMiddleware\OAuth2RemoteAuthenticationMiddleware($app->getContainer(), [
-    // This protects everything under /api. Use a list of regexes here.
-    'protected' => ['/api\//'], // 
-    // Loads the remote authentication server from the environment
-    'authentication_server' => getenv('AUTHENTICATION_SERVER') 
-]));
-
+$app->add(new \Sympla\RemoteAuthenticationMiddleware\OAuth2RemoteAuthenticationMiddleware(
+    new GuzzleHttp\Client,
+    $app->getContainer(),
+    [
+        // This protects everything under /api. Use a list of regexes here.
+        'protected' => ['/api\//'], // 
+        // Loads the remote authentication server from the environment
+        'authentication_server' => getenv('AUTHENTICATION_SERVER') 
+    ])
+);
 ```
 
-Pronto. Agora, nas rotas definidas na chave `protected`, você pode invocar 
-o valor de `user`, no container:
+Now, in the routes defined in the `protected` key, you can invoke
+the `user` key, from the container:
 
 ```php
 <?php
@@ -55,11 +49,9 @@ $app->post('/api/get', function (
     $user = $this->get('user');
     
     //...
-}
+});
 ```
 
-É isso :)
-
-## Autor
+## Author
 
 Pedro Cordeiro <pedro.cordeiro@sympla.com.br>
