@@ -1,3 +1,9 @@
+# Deprecated
+
+This project has been deprecated and discontinued, in favor of [Mesa Gold Bar](https://github.com/sympla/mesa-gold-bar).
+
+This middleware now lives in the `Sympla\Auth\Middleware\Slim` PSR-4 class.
+
 # sympla/mariposa-saloon
 
 > Mariposa Saloon is the local saloon and brothel in Sweetwater, Westworld.
